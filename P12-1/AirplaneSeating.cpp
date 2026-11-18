@@ -24,8 +24,67 @@ int main(void) {
 		{ 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', ' ' },
 		{ 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', ' ' }
 	};
+	int columnNumber;
+	char rowLetter;
+	char testLetter;
 
-	displaySeatColumn(seatLetters, COLUMNS);
+
+	while (true) {
+		displaySeatColumn(seatLetters, COLUMNS);
+		cout << endl << "Enter a seat or Q to quit: ";
+		cin >> columnNumber >> rowLetter;
+
+		if (rowLetter == 'Q') {
+			break;
+		}
+
+		if (findRowIndex(columnNumber) == 999) {
+			cout << "Sorry, no such seat exists on the CRJ 200." << endl;
+		}
+		else {
+
+			columnNumber = findRowIndex(columnNumber);
+
+			if (rowLetter == 'A') {
+				testLetter = findSeatIndex(seatLetters[0][columnNumber]);
+			}
+			else if (rowLetter == 'B') {
+				testLetter = findSeatIndex(seatLetters[1][columnNumber]);
+			}
+			else if (rowLetter == 'C') {
+				testLetter = findSeatIndex(seatLetters[2][columnNumber]);
+			}
+			else if (rowLetter == 'D') {
+				testLetter = findSeatIndex(seatLetters[3][columnNumber]);
+			}
+			else {
+				testLetter = 'E';
+			}
+
+			if (testLetter == 'E') {
+				cout << "Sorry, no such seat exists on the CRJ 200." << endl;
+			}
+			else if (testLetter == 'F') {
+				cout << "Sorry, that seat is already filled. Please pick another." << endl;
+			}
+			else if (testLetter == 'X') {
+				if (rowLetter == 'A') {
+					seatLetters[0][columnNumber] = 'X';
+				}
+				else if (rowLetter == 'B') {
+					seatLetters[1][columnNumber] = 'X';
+				}
+				else if (rowLetter == 'C') {
+					seatLetters[2][columnNumber] = 'X';
+				}
+				else if (rowLetter == 'D') {
+					seatLetters[3][columnNumber] = 'X';
+				}
+			}
+		}
+		cout << endl;
+	}
+	
 
 	return 0;
 }
