@@ -14,11 +14,7 @@ int findRowIndex(int thisRow);
 // @param thisSeat - character indicating selected seat within row
 // @return appropriate index into 2-D array if the specified seat is valid, ERROR otherwise
 int findSeatIndex(char thisSeat);
-// displaySeatColumn: given a 2-D mapping of the seating chart in the form [columns][rows],
-// will print out a "column" of seats on one row of output (i.e., seat 'A' for all rows in the plane)
-// @param seats - reference to a 2-D character array
-// @param column - reference to which column of seats to display
-void displaySeatColumn(char seats[][COLUMNS]);
+void displaySeatColumn(char seats[][COLUMNS], int column);
 
 int main(void) {
 	// Seats array [rows][columns]
@@ -29,12 +25,31 @@ int main(void) {
 		{ 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', ' ' }
 	};
 
-	displaySeatColumn(seatLetters);
+	displaySeatColumn(seatLetters, COLUMNS);
 
 	return 0;
 }
 
-void displaySeatColumn(char seats[][COLUMNS]) {
+
+
+int findSeatIndex(char thisSeat) {
+	if (thisSeat == 'A') {
+		return 'X';
+	} else if (thisSeat == 'B') {
+		return 'X';
+	} else if (thisSeat == 'C') {
+		return 'X';
+	} else if (thisSeat == 'D') {
+		return 'X';
+	} else if (thisSeat == 'X') {
+		return 'F'; // F for Filled
+	} else {
+		return 'E'; // E for Error
+	}
+}
+
+
+void displaySeatColumn(char seats[][COLUMNS], int column) {
 	for (int i = (ROWS - 1); i >= 0; i--) {
 		for (int j = 0; j < COLUMNS; j++) {
 			cout << seats[i][j] << " ";
