@@ -30,7 +30,14 @@ int main(void) {
 	return 0;
 }
 
-
+int findRowIndex(int thisRow) {
+	if ((thisRow >= 1) && (thisRow <= 13)) {
+		return (thisRow - 1);
+	}
+	else {
+		return 999;
+	}
+}
 
 int findSeatIndex(char thisSeat) {
 	if (thisSeat == 'A') {
