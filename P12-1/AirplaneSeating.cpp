@@ -1,6 +1,10 @@
 //Introductory Programming Lab 12 -- Emerson Beesley -- November 12, 2026
 
-const int ROWS = 13;
+#include <iostream>
+using namespace std;
+
+const int COLUMNS = 13;
+const int ROWS = 4;
 
 // findRowIndex: given user input, returns appropriate row index into arrays.
 // @param thisRow - integer indicating row selected by the user
@@ -14,12 +18,32 @@ int findSeatIndex(char thisSeat);
 // will print out a "column" of seats on one row of output (i.e., seat 'A' for all rows in the plane)
 // @param seats - reference to a 2-D character array
 // @param column - reference to which column of seats to display
-void displaySeatColumn(char seats[][ROWS], int column);
+void displaySeatColumn(char seats[][COLUMNS]);
 
 int main(void) {
-	// Seats array [colums][rows]
-	char seatLetters[13][2] = ({})
+	// Seats array [rows][columns]
+	char seatLetters[ROWS][COLUMNS] = {
+		{ 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A' },
+		{ 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B' },
+		{ 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', ' ' },
+		{ 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', ' ' }
+	};
+
+	displaySeatColumn(seatLetters);
 
 	return 0;
 }
 
+void displaySeatColumn(char seats[][COLUMNS]) {
+	for (int i = (ROWS - 1); i >= 0; i--) {
+		for (int j = 0; j < COLUMNS; j++) {
+			cout << seats[i][j] << " ";
+		}
+
+		cout << endl;
+
+		if (i == 2) {
+			cout << endl << "                  1 1 1 1" << endl << "1 2 3 4 5 6 7 8 9 0 1 2 3" << endl << endl;
+		}
+	}
+}
